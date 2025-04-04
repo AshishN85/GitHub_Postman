@@ -18,12 +18,20 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Newman
-        run: npm install -g newman
+      - name: Install Newman and HTML Reporter
+        run: |
+         npm install -g newman
+         npm install -g newman-reporter-html
 
       - name: Run Postman Collection and generate HTML report
         run: 
           newman run GitHub.postman_collection.json \
              --reporters cli,html \
              --reporter-html-export newman-report.html
+
+      - name: Upload Newman HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+         name: newman-html-report
+         path: newman-report.html
 
