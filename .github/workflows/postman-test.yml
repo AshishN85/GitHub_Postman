@@ -22,10 +22,11 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Collection
-        run: newman run postman/GitHub.postman_collection.json
+        run: newman run GitHub.postman_collection.json
 
       - name: Run Postman Collection and generate HTML report
-        run: newman run postman/GitHub.postman_collection.json \
+        run: 
+          newman run GitHub.postman_collection.json \
              --reporters cli,html \
              --reporter-html-export newman-report.html
 
